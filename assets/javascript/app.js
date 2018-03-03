@@ -48,8 +48,8 @@ var triviaQuestions = [{
 
 }];
 
-var picArray = [ 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10'];
-var currentQuestion; var rightAnswer; var wrongAnswer; var unAnswered; var seconds; var time; var answered; var userSelect;
+var picArray = [ 'question1', 'question2', 'question3', 'question4', 'question5', 'question6', 'question7', 'question8', 'question9', 'question10', 'testFin'];
+var currentQuestion; var rightAnswer; var wrongAnswer; var unAnswered; var seconds; var time; var answered; var userSelect; var testFin
 var messages = {
     correct:"Correct! Way to go!!!",
     incorrect: "Awwww close, but wrong!!!",
@@ -87,7 +87,7 @@ function newQuestion(){
 	$('#pics').empty();
 	answered = true;
 	
-	//sets up new questions & answerList
+	//-- sets up new questions & answerList --//
 	$('#currentQuestion').html('Question #'+(currentQuestion+1)+'/'+triviaQuestions.length);
 	$('.question').html('<h2>' + triviaQuestions[currentQuestion].question + '</h2>');
 	for(var i = 0; i < 4; i++){
@@ -98,7 +98,7 @@ function newQuestion(){
 		$('.answerList').append(choices);
 	}
 	countdown();
-	//clicking an answer will pause the time and setup answerPage
+	//-- clicking an answer will pause the time and setup answerPage --//
 	$('.thisChoice').on('click',function(){
 		userSelect = $(this).data('index');
 		clearInterval(time);
@@ -131,7 +131,7 @@ function answerPage(){
 
 	var rightAnswerText = triviaQuestions[currentQuestion].answerList[triviaQuestions[currentQuestion].answer];
 	var rightAnswerIndex = triviaQuestions[currentQuestion].answer;
-	$('#pics').html('<img src = "assets/images/'+ picArray[currentQuestion] +'.jpg" width = "400px">');
+	$("#pics").html('<img src = "assets/images/'+ picArray[currentQuestion] +'.jpg" width = "400px">');
 	//checks to see correct, incorrect, or unanswered
 	if((userSelect == rightAnswerIndex) && (answered == true)){
 		rightAnswer++;
@@ -159,7 +159,7 @@ function scoreboard(){
 	$('#timeLeft').empty();
 	$('#message').empty();
 	$('#correctedAnswer').empty();
-	$('#gif').empty();
+	$("#pics").html('<img src = assets/images/testFin>');
 
 	$('#finalMessage').html(messages.finished);
 	$('#rightAnswers').html("Correct Answers: " + rightAnswer);
